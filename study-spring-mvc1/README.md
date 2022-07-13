@@ -33,7 +33,7 @@
     <code>Servlet</code> 
   </summary>
 
-<a href="https://github.com/itsChrisJang/study-spring/tree/main/study-spring-core-basic"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
+<a href="https://github.com/itsChrisJang/study-spring/tree/main/study-spring-mvc1/servlet"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
 </details>
 
 <details>
@@ -41,7 +41,7 @@
     <code>Spring MVC</code> 
   </summary>
 
-<a href="https://github.com/itsChrisJang/study-spring/tree/main/study-spring-mvc1"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
+<a href="https://github.com/itsChrisJang/study-spring/tree/main/study-spring-mvc1/mvc"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
 </details>
 
 
