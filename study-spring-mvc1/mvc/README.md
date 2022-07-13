@@ -26,10 +26,10 @@
 - 로그가 출력되는 포멧 확인
    - 시간, 로그 레벨, 프로세스 ID, 쓰레드 명, 클래스명, 로그 메시지
 - 로그 레벨 설정을 변경해서 출력 결과를 보자.
-   - LEVEL: TRACE > DEBUG > INFO > WARN > ERROR
+   - `LEVEL: TRACE > DEBUG > INFO > WARN > ERROR`
    - 개발 서버는 debug 출력
    - 운영 서버는 info 출력
-- @Slf4j 로 변경
+- `@Slf4j` 로 변경
 - 
 #### application.properties
 ```properties
@@ -56,9 +56,9 @@ logging.level.hello.springmvc=debug
 ---
 
 ### 매핑 정보
-- @RestController
-   - @Controller 는 반환 값이 String 이면 뷰 이름으로 인식된다. 그래서 뷰를 찾고 뷰가 랜더링 된다.
-   - @RestController 는 반환 값으로 뷰를 찾는 것이 아니라, **HTTP 메시지 바디에 바로 입력**한다.
+- `@RestController`
+   - `@Controller` 는 반환 값이 `String` 이면 뷰 이름으로 인식된다. 그래서 **뷰를 찾고 뷰가 랜더링** 된다.
+   - `@RestController` 는 반환 값으로 뷰를 찾는 것이 아니라, **HTTP 메시지 바디에 바로 입력**한다.
 
 ---
 > 출처 : https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1#
