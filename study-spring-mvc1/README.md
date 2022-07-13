@@ -1,5 +1,5 @@
-# Chris's Spring Study log
-> Easier said than done...
+# 스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술
+> study log
 --- 
 ### Commit Role
 <details>
@@ -22,39 +22,26 @@
 </details>
 
 ---
-### Lecture
+### link
+<a href="https://bit.ly/3uIWT4L"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
+
+--- 
+
+### index
 <details>
   <summary>
-    <code>모든 개발자를 위한 HTTP 웹 기본 지식</code> 
+    <code>Servlet</code> 
   </summary>
 
-<a href="https://bit.ly/3yzDAMk"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
-</details>
-
-<details>
-  <summary>
-    <code>스프링 핵심 원리 - 기본편</code> 
-  </summary>
-
-<a href="https://bit.ly/3IBE0Gt"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
 <a href="https://github.com/itsChrisJang/study-spring/tree/main/study-spring-core-basic"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
 </details>
 
 <details>
   <summary>
-    <code>스프링 MVC 1편 - 백엔드 웹 개발 핵심 기술</code> 
+    <code>Spring MVC</code> 
   </summary>
 
-<a href="https://bit.ly/3uIWT4L"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
 <a href="https://github.com/itsChrisJang/study-spring/tree/main/study-spring-mvc1"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
 </details>
 
-<details>
-  <summary>
-    <code>스프링 MVC 2편 - 백엔드 웹 개발 활용 기술</code> 
-  </summary>
-
-##### not yet
-
-</details>
 

@@ -1,11 +1,14 @@
 # 스프링 핵심 원리 - 기본편
-## 진행
+## when
 | 회독   | 완료일자         |
 |------|--------------|
 | 1    | ~ 2022-06-29 |
 ---
+## link
+<a href="https://bit.ly/3IBE0Gt"><img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/></a>
 
-### 목차
+---
+## index
 1. 객체 지향 설계와 스프링
 2. 스프링 핵심 원리 이해1 - 예제 만들기
 3. 스프링 핵심 원리 이해2 - 객체 지향 원리 적용
@@ -17,7 +20,8 @@
 9. 빈 스코프
 
 --- 
-## TIPs
+
+## 다이어그램
 - 클래스 다이어그램은 정적
 - 객체 다이어그램은 동적
 
