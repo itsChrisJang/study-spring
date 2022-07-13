@@ -1,5 +1,5 @@
-# study log
-> study log
+# study-spring-mvc1-mvc
+> to study Spring-MVC
 --- 
 <details>
   <summary>
