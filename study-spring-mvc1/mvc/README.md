@@ -80,11 +80,48 @@ logging.level.hello.springmvc=debug
 > `HttpServletRequest` 의 `request.getParameter()` 를 사용하면 다음 두가지 요청 파라미터를 조회할 수 있다.
 
 ---
-## @RestController
+### @RestController
 - @Controller 대신에 @RestController 애노테이션을 사용하면, 해당 컨트롤러에 모두 @ResponseBody 가 적용되는 효과가 있다. 
 - 따라서 뷰 템플릿을 사용하는 것이 아니라, HTTP 메시지 바디에 직접 데이터를 입력한다. 이름 그대로 Rest API(HTTP API)를 만들 때 사용하는 컨트롤러이다.
 - 참고로 @ResponseBody 는 클래스 레벨에 두면 전체 메서드에 적용되는데, @RestController 에노테이션 안에 @ResponseBody 가 적용되어 있다.
-- 
+
+---
+### HTTP Message Converter
+![initial](src/main/resources/images/@ResponseBody.png)
+- @ResponseBody 를 사용
+   - HTTP의 BODY에 문자 내용을 직접 반환
+    - viewResolver 대신에 HttpMessageConverter 가 동작
+   - 기본 문자처리: StringHttpMessageConverter
+   - 기본 객체처리: MappingJackson2HttpMessageConverter
+   - byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있음
+> 참고: 응답의 경우 **클라이언트의 HTTP Accept 해더와 서버의 컨트롤러 반환 타입 정보** 둘을 조합해서
+> HttpMessageConverter 가 선택된다.  
+---
+### RequestMappingHandlerAdapter 동작 방식
+![initial](src/main/resources/images/RequestMappingHandlerAdapter.png)
+
+### ArgumentResolver
+- 생각해보면, 애노테이션 기반의 컨트롤러는 매우 다양한 파라미터를 사용할 수 있었다.
+- `HttpServletRequest` , `Model` 은 물론이고, @RequestParam` , `@ModelAttribute` 같은 애노테이션 그리고 `@RequestBody` , `HttpEntity` 같은 HTTP 메시지를 처리하는 부분까지 매우 큰 유연함을 보여주었다.
+- 이렇게 파라미터를 유연하게 처리할 수 있는 이유가 바로 `ArgumentResolver` 덕분이다.
+
+- 애노테이션 기반 컨트롤러를 처리하는 `RequestMappingHandlerAdapter` 는 바로 이 `ArgumentResolver` 를 호출해서 컨트롤러(핸들러)가 필요로 하는 다양한 파라미터의 값(객체)을 생성한다.
+- 그리고 이렇게 파리미터의 값이 모두 준비되면 컨트롤러를 호출하면서 값을 넘겨준다.
+
+- 정확히는 HandlerMethodArgumentResolver 인데 줄여서 ArgumentResolver 라고 부른다.
+```java
+  public interface HandlerMethodArgumentResolver {
+    boolean supportsParameter(MethodParameter parameter);
+    
+    @Nullable
+    Object resolveArgument(MethodParameter parameter, @Nullable
+      ModelAndViewContainer mavContainer,
+      NativeWebRequest webRequest, @Nullable WebDataBinderFactory
+      binderFactory) throws Exception;
+  }
+```
+#### 동작 방식 
+- `ArgumentResolver` 의 `supportsParameter()` 를 호출해서 해당 파라미터를 지원하는지 체크하고, 지원하면 `resolveArgument()` 를 호출해서 실제 객체를 생성한다. 그리고 이렇게 생성된 객체가 컨트롤러 호출시 넘어가는 것이다.
 ---
 > 출처 : https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1#
 --- 
