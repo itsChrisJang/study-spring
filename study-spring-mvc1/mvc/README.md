@@ -87,7 +87,7 @@ logging.level.hello.springmvc=debug
 
 ---
 ### HTTP Message Converter
-![initial](src/main/resources/images/@ResponseBody.png)
+![ResponseBody](src/main/resources/images/@ResponseBody.png)
 - @ResponseBody 를 사용
    - HTTP의 BODY에 문자 내용을 직접 반환
     - viewResolver 대신에 HttpMessageConverter 가 동작
@@ -98,7 +98,7 @@ logging.level.hello.springmvc=debug
 > HttpMessageConverter 가 선택된다.  
 ---
 ### RequestMappingHandlerAdapter 동작 방식
-![initial](src/main/resources/images/RequestMappingHandlerAdapter.png)
+![RequestMappingHandlerAdapter](src/main/resources/images/RequestMappingHandlerAdapter.png)
 
 ### ArgumentResolver
 - 생각해보면, 애노테이션 기반의 컨트롤러는 매우 다양한 파라미터를 사용할 수 있었다.
@@ -120,8 +120,50 @@ logging.level.hello.springmvc=debug
       binderFactory) throws Exception;
   }
 ```
+
 #### 동작 방식 
 - `ArgumentResolver` 의 `supportsParameter()` 를 호출해서 해당 파라미터를 지원하는지 체크하고, 지원하면 `resolveArgument()` 를 호출해서 실제 객체를 생성한다. 그리고 이렇게 생성된 객체가 컨트롤러 호출시 넘어가는 것이다.
+
+### ReturnValueHandler
+- `HandlerMethodReturnValueHandler` 를 줄여서 ReturnValueHandler 라 부른다.
+- `ArgumentResolver` 와 비슷한데, 이것은 응답 값을 변환하고 처리한다.
+- 컨트롤러에서 String으로 뷰 이름을 반환해도, 동작하는 이유가 바로 ReturnValueHandler 덕분이다.
+- 스프링은 10여개가 넘는 `ReturnValueHandler` 를 지원한다.
+   - 예) `ModelAndView` , `@ResponseBody` , `HttpEntity` , `String`
+
+### HTTP 메시지 컨버터
+#### HTTP 메시지 컨버터 위치
+![HttpMessageConverter](src/main/resources/images/HttpMessageConverter.png)
+- **요청의 경우**
+   - `@RequestBody` 를 처리하는 `ArgumentResolver` 가 있고, `HttpEntity` 를 처리하는 `ArgumentResolver` 가 있다. 
+   - 이 `ArgumentResolver` 들이 HTTP 메시지 컨버터를 사용해서 필요한 객체를 생성하는 것이다.
+- **응답의 경우**
+   - `@ResponseBody` 와 `HttpEntity` 를 처리하는 `ReturnValueHandler` 가 있다. 그리고 여기에서 HTTP 메시지 컨버터를 호출해서 응답 결과를 만든다.
+
+> 스프링 MVC는 `@RequestBody` , `@ResponseBody` 가 있으면 `RequestResponseBodyMethodProcessor`(ArgumentResolver) HttpEntity 가 있으면 `HttpEntityMethodProcessor` (ArgumentResolver)를 사용한다.
+
+### 확장
+- 스프링이 필요한 대부분의 기능을 제공하기 때문에 실제 기능을 확장할 일이 많지는 않다. 
+- 기능 확장은 `WebMvcConfigurer` 를 상속 받아서 스프링 빈으로 등록하면 된다. 
+- 실제 자주 사용하지는 않으니 실제 기능 확장이 필요할 때 `WebMvcConfigurer` 를 검색해보자.
+**WebMvcConfigurer 확장**
+```java
+  @Bean
+  public WebMvcConfigurer webMvcConfigurer() {
+      return new WebMvcConfigurer() {
+          @Override
+          public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+                //...
+          }
+          @Override
+          public void extendMessageConverters(List<HttpMessageConverter<?>>converters) {
+                //...
+          }
+      };
+  }
+```
+---
+
 ---
 > 출처 : https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1#
 --- 
