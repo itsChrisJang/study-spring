@@ -1,5 +1,5 @@
 # 스프링 MVC 2편 - 백엔드 웹 개발 핵심 기술
-## 검증1 - Validation
+> 검증1 - Validation
 --- 
 ### Commit Role
 <details>
