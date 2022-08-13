@@ -22,11 +22,14 @@
 </details>
 
 ---
-### notion
+### Notion
 https://flawless-plough-56d.notion.site/DB-1-2dfc8f8347904cfc8b59e9dfde3e387c
 
 ---
-#### 출처 
-![RequestMappingHandlerAdapter](src/main/resources/images/fail.png)
+### Certification
+![RequestMappingHandlerAdapter](certification.png)
+
+---
+### 출처 
 >  https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-db-1
 ---
