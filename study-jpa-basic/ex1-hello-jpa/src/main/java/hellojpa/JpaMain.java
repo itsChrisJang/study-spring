@@ -8,29 +8,37 @@ import javax.persistence.Persistence;
 public class JpaMain {
 
     public static void main(String[] args) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hello");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager em = emf.createEntityManager();
 
-        EntityTransaction tx = entityManager.getTransaction();
+        EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
-            Member member = new Member();
-            member.setUsername("C");
 
-            System.out.println("================1");
-            entityManager.persist(member);
-            System.out.println("member.getId() = " + member.getId());
-            System.out.println("================2");
+            // 저장
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team);
+            em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getId());
+
+            Team findTeam = findMember.getTeam();
+            System.out.println("findTeam.getName() = " + findTeam.getName());
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
-            entityManager.close();
+            em.close();
         }
 
-        entityManagerFactory.close();
+        emf.close();
     }
 }
