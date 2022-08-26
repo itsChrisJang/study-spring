@@ -28,8 +28,9 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("member1");
             // 순수 객체 상태를 고려해서 항상 양쪽에 값을 설정하자
-            member.changeTeam(team);    //**
             em.persist(member);
+
+            team.addMember(member);
 
             em.flush();
             em.clear();
