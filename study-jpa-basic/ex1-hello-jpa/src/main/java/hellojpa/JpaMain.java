@@ -2,10 +2,7 @@ package hellojpa;
 
 import org.h2.util.json.JSONItemType;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import java.util.List;
 
 public class JpaMain {
@@ -20,28 +17,17 @@ public class JpaMain {
 
         try {
 
-            // 저장
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
-
             Member member = new Member();
             member.setUsername("member1");
-            // 순수 객체 상태를 고려해서 항상 양쪽에 값을 설정하자
+
             em.persist(member);
 
-            team.addMember(member);
+            Team team = new Team();
+            team.setName("teamA");
+            //
+            team.getMembers().add(member);
 
-            em.flush();
-            em.clear();
-
-            Team findTeam = em.find(Team.class, team.getId());
-            List<Member> members = findTeam.getMembers();
-
-            System.out.println("===========================");
-            System.out.println("findTeam = " + findTeam);
-            System.out.println("===========================");
-
+            em.persist(team);
 
             tx.commit();
         } catch (Exception e) {
