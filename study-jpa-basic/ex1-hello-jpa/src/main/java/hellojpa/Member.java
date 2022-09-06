@@ -21,7 +21,7 @@ public class Member {
     private Team team;
 
     @OneToOne
-    @JoinColumn(name = "LOCKER_ID ")
+    @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
     @OneToMany(mappedBy = "member")
