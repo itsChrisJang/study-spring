@@ -5,3 +5,11 @@
 - 영속성 컨텍스트에 찾는 엔티티가 이미 있으면 em.getReference()를 호출해도 실제 엔티티 반환
 - 영속성 컨텍스트의 도움을 받을 수 없는 준 영속 상태일 때, 프록시를 초기화 하는 문제 발생
   - 하이버 네이트는 org.hibernate.LazyInitializationException 예외를 터트림
+
+
+### 프록시와 즉시로딩 주의
+- **가급적 지연 로딩만 사용(특히 실무에서)**
+- 즉시 로딩을 적용하면 예상하지 못한 SQL이 발생
+- **즉시 로딩은 JPQL에서 N+1 문제를 일으킨다.
+- **@ManyToOne, @OneToOne은 기본이 즉시 로딩 -> LAZY로 설정**
+- @OneToMany, @ManyToMany는 기본이 지연 로딩
