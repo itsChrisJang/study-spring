@@ -11,6 +11,8 @@ import java.util.List;
 
 public class JpaMain {
 
+    private static List<Address> addressHistory;
+
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
@@ -21,15 +23,31 @@ public class JpaMain {
 
         try {
 
-            Address address = new Address("city", "street", "10000");
-
             Member member = new Member();
             member.setUsername("member1");
-            member.setHomeAddress(address);
+            member.setHomeAddress(new Address("homeCity", "street1", "10000"));
+
+            member.getFavoritefoods().add("치킨");
+            member.getFavoritefoods().add("족발");
+            member.getFavoritefoods().add("피자");
+
+            member.getAddressHistory().add(new Address("old1", "street1", "10000"));
+            member.getAddressHistory().add(new Address("old2", "street1", "10000"));
+
             em.persist(member);
 
-            Address newAddress = new Address("NewCity",address.getStreet(), address.getZipcode());
-            member.setHomeAddress(newAddress);
+            em.flush();
+            em.clear();
+
+            System.out.println("========START========");
+            Member findMember = em.find(Member.class, member.getId());
+
+            // 치킨 -> 한식
+            findMember.getFavoritefoods().remove("치킨");
+            findMember.getFavoritefoods().add("한식");
+
+            findMember.getAddressHistory().remove(new Address("old1", "street1", "10000"));
+            findMember.getAddressHistory().add(new Address("newCity1", "street1", "10000"));
 
             tx.commit();
         } catch (Exception e) {
