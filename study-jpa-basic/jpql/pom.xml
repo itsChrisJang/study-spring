@@ -4,6 +4,10 @@
   <groupId>hellojpa</groupId>
   <artifactId>jpql</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
   <name>Archetype - jpql</name>
   <url>http://maven.apache.org</url>
 
