@@ -192,13 +192,13 @@
 > - 네이티브 SQL
 > - JDBC API 직접 사용, MyBatis, SpringJdbcTemplate 함꼐 사용
 
-### JPQL 소개
+#### JPQL 소개
 - 가장 단순한 조회 방법
   - EntityManager.find()
   - 객체 그래프 탐색(a.getB().getC())
 - **나이가 18살 이상인 회원을 모두 검색하고 싶다면?**
 
-### JPQL
+#### JPQL
 - JPA를 사용하면 엔티티 객체를 중심으로 개발
 - 문제는 검색 쿼리
 - 검색을 할 때도 **테이블이 아닌 엔티티 객체를 대상으로 검색**
@@ -212,7 +212,7 @@
 - SQL을 추상화해서 특정 데이터베이스 SQL에 의존 X
 - JPQL을 한마디로 정의하면 **객체 지향 SQL**
 
-### JPA Criteria
+#### JPA Criteria
 ```java
 // JPA Criteria 사용 준비
 CriteriaBuilder c b = em.getCriteriaBuilder();
@@ -232,7 +232,7 @@ List<Member> resultList = em.createQuery(cq).getResultList();
   - **단점 : 너무 복잡하고 실용성이 없다.**
   - Criteria 대신에 **QueryDSL 사용 권장**
 
-### QueryDSL 소개
+#### QueryDSL 소개
 ```java
 // JPQL
 // select m from member m where m.age > 18
@@ -248,7 +248,7 @@ List<Member> result = query.selectFrom(m).where(m.age.gt(18)).orderBy(m.name.des
 - **단순하고 쉬움**
 - **실무 사용 권장**
 
-### 네이티브 SQL 소개
+#### 네이티브 SQL 소개
 ```java
 String sql = "SELECT ID, AGE, TEAM_ID, NAME FROM MEMBER WHERE NAME = 'kim'";
 
@@ -258,11 +258,46 @@ List<Member> resultList = em.createNativeQuery(sql, Member.class).getResultList(
 - JPQL로 해결할 수 없는 특정 데이터베이스에 의존적인 기능
 - 예) 오라클 CONNECT BY, 특정 DB만 사용하는 SQL 힌트
 
-### JDBC API 직접 사용, MyBatis, SpringJdbcTemplate 함꼐 사용
+#### JDBC API 직접 사용, MyBatis, SpringJdbcTemplate 함꼐 사용
 - JPA를 사용하면서 JDBC 커넥션을 직접 사용하거나, 스프링 JdbcTemplate, MyBatis 등을 함꼐 사용 가능
 - 단 영속성 컨텍스트를 적절한 시점에 강제로 플러시 필요
 - 예) JPA를 우회해서 SQL을 실행하기 직전에 영속성 컨텍스트 수동 플러시 
 
+### 기본 문법과 쿼리 API
+#### JPQL 소개
+- JPQL은 객체지향 쿼리 언어이다.
+  - 따라서 테이블을 대상으로 쿼리하는 것이 아니라 **엔티티 객체를 대상으로 쿼리**한다.
+- JPQL은 SQL을 추상화해서 특정 데이터베이스 SQL에 의존하지 않는다.
+- JPQL은 결국 SQL로 변환된다.
+> #### JPQL 문법
+> ```java
+> select_문 :: = 
+>   select_절
+>   from_절
+>   [where_절]
+>   [groupby_절]
+>   [having_절]
+>   [orderby_절]
+> 
+> update_문 :: = update_절 [where_절]
+> delete_문 :: = delete_절 [where_절]
+> ``` 
+- select m from Member as m where m.age > 18
+- 엔티티와 속성은 대소문자 구분 O (Member, age)
+- JPQL 키워드는 대소문자 구분 X (SELECT, FROM, WHERE)
+- 엔티티 이름 사용, 테이블 이름이 아님(Member)
+- **별칭은 필수(m)** (as는 생략가능) 
 
+#### TypeQuery, Query
+- TypeQuery : 반환 타입이 명확할 때 사용
+- Query : 반환 타입이 명확하지 않을 때 사용
+
+#### 결과 조회 API
+- query.getResultList() : **결과가 하나 이상일 떄**, 리스트 반환
+  - 결과가 없으면 빈 리스트 반환
+- query.getSingleResult() : **결과가 정확히 하나**, 단일 객체 반환
+  - 결과가 없으면: javax.persistence.NoResultException
+  - 둘 이상이면: javax.persistence.NonUniqueResultException
+- 파라미터 바인딩 - 이름 기준 ,위치 기준
 
 ---
