@@ -323,5 +323,38 @@ List<Member> resultList = em.createNativeQuery(sql, Member.class).getResultList(
 - JPA는 페이징을 다음 두 API로 추상화
   - **setFirstResult**(int startPosition) : 조회 시작 위치 (0부터 시작)
   - **setMaxResults**(int maxResult) : 조회할 데이터 수
-####
+  
+#### 페이징 API 예시
+```java
+// 페이징 쿼리
+List<Member> result = em.createQuery("select m from Member m order by m.age desc", Member.class)
+    .setFirstResult(0)
+    .setMaxResults(10)
+    .getResultList();
+```
+
+### 조인
+- 내부 조인 :
+  - SELECT m FROM Member m [INNER] JOIN m.team t
+- 외부 조인 :
+  - SELECT m FROM Member m LEFT [OUTER] JOIN m.team t
+- 세타 조인 :
+  - SELECT count(m) FROM Member m, Team t WHERE m.username = t.name
+
+#### 조인 - ON 절
+- ON절을 활용한 조인(JPA 2.1부터 지원)
+  1. 조인 대상 필터링
+     - EX) 회원과 팀을 조인하면서, 팀 이름이 A인 팀만 조인
+       - **JPQL :**
+         - SELECT m.t FROM Member m LEFT JOIN m.team t **on** t.name = 'A'
+       - **SQL :**
+         - SELECT m.*, t.* FROM Member m LEFT JOIN Team t **ON** m.TEAM_ID=t.ID and t.NAME = 'A'
+  2. 연관관계 없는 엔티티 외부 조인(하이버네이트 5.1부터)
+    - EX) 회원의 이름과 팀의 이름이 같은 대상 외부 조인
+      - **JPQL :**
+        - SELECT m, t FROM Member m LEFT JOIN Team t **on** m.username = t.name
+      - **SQL :**
+        - SELECT m.*, t.* FROM Member m LEFT JOIN Team t **ON** m.username = t.name
+
+
 ---
