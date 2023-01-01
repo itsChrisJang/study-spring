@@ -51,8 +51,12 @@ public class JpaMain {
             int resultCount = em.createQuery("update Member m set m.age = 20")
                     .executeUpdate();
 
+            Member member = em.find(Member.class, member1.getId());
+
+
             System.out.println("resultCount = " + resultCount);
-            
+
+            System.out.println("member.getAge() = " + member.getAge());
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
