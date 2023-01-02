@@ -1,8 +1,7 @@
 package jpabook.jpashop;
 
 import jpabook.jpashop.domain.Book;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.Item;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,9 +12,9 @@ public class JpaMain {
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("hello");
 
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManager em = entityManagerFactory.createEntityManager();
 
-        EntityTransaction tx = entityManager.getTransaction();
+        EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         try {
@@ -24,13 +23,15 @@ public class JpaMain {
             book.setName("JPA");
             book.setAuthor("김영한");
 
-            entityManager.persist(book);
+            em.persist(book);
+
+            em.createQuery("select i from Item i where type(i) = Book ", Item.class).getResultList();
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {
-            entityManager.close();
+            em.close();
         }
 
         entityManagerFactory.close();
