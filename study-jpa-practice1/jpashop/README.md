@@ -1,4 +1,5 @@
-## 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발
+# 실전! 스프링 부트와 JPA 활용1 - 웹 애플리케이션 개발
+## 구성
 - 핵심 라이브러리 
   - 스프링 MVC 
   - 스프링 ORM
@@ -28,7 +29,7 @@
   - 상품은 재고 관리가 필요하다.
   - 상품의 종류는 도서, 음반, 영화가 있다. 상품을 카테고리로 구분할 수 있다.
   - 상품 주문시 배송 정보를 입력할 수 있다.
-
+---
 ## 도메인 모델과 테이블 설계
 ![img](./readmeIMG/domainModel.png)
 ### 회원 엔티티 분석
@@ -64,3 +65,18 @@
     class java.util.ArrayList
     class org.hibernate.collection.internal.PersistentBag
 ```
+
+### 테이블, 컬럼명 생성 전략
+- 스프링 부트에서 하이버네이트 기본 매핑 전략을 변경해서 실제 테이블 필드명은 다름
+- 하이버네이트 기존 구현: 엔티티의 필드명을 그대로 테이블의 컬럼명으로 사용 
+- ( `SpringPhysicalNamingStrategy` )
+- 스프링 부트 신규 설정 (엔티티(필드) 테이블(컬럼))
+  1. 카멜 케이스 언더스코어(memberPoint member_point) 
+  2. .(점) _(언더스코어)
+  3. 대문자 소문자
+### 적용 2 단계
+1. 논리명 생성: 명시적으로 컬럼, 테이블명을 직접 적지 않으면 ImplicitNamingStrategy 사용 
+  - `spring.jpa.hibernate.naming.implicit-strategy` : 테이블이나, 컬럼명을 명시하지 않을 때 논리명 적용,
+2. 물리명 적용:
+  - `spring.jpa.hibernate.naming.physical-strategy` : 모든 논리명에 적용됨, 실제 테이블에 적용 
+  - (username usernm 등으로 회사 룰로 바꿀 수 있음)
