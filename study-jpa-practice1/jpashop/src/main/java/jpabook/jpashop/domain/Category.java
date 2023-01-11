@@ -1,6 +1,5 @@
 package jpabook.jpashop.domain;
 
-import jdk.jfr.ContentType;
 import jpabook.jpashop.domain.item.Item;
 import lombok.Getter;
 import lombok.Setter;
