@@ -12,15 +12,15 @@ import java.util.Objects;
 public class HelloController  {
 
     private final HelloService helloService;
-    private final ApplicationContext applicationContext;
 
-    public HelloController(HelloService helloService, ApplicationContext applicationContext) {
+    public HelloController(HelloService helloService) {
         this.helloService = helloService;
-        this.applicationContext = applicationContext;
     }
 
     @GetMapping("/hello")
     public String hello(String name) {
+        if(name == null || name.length() == 0) throw new IllegalArgumentException();
+
         return helloService.sayHello(Objects.requireNonNull(name));
     }
 
