@@ -36,8 +36,8 @@ public class AsyncConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final DataSource dataSource;
 
-    @Bean
-    public Job job() throws Exception {
+/*    @Bean
+    public Job asyncBatchJob() throws Exception {
         return jobBuilderFactory.get("batchJob")
                 .incrementer(new RunIdIncrementer())
                 .start(step1())
@@ -162,5 +162,5 @@ public class AsyncConfiguration {
         itemWriter.afterPropertiesSet();
 
         return itemWriter;
-    }
+    }*/
 }
