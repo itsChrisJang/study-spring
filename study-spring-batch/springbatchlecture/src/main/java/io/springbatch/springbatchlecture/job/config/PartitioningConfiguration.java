@@ -51,22 +51,38 @@ public class PartitioningConfiguration {
     }
 
     @Bean
-    public Step masterStep() {
+    public Step masterStep() throws InterruptedException {
         return stepBuilderFactory.get("masterStep")
                 .partitioner(slaveStep().getName(), partitioner())
                 .step(slaveStep())
                 .gridSize(4)
                 .taskExecutor(new SimpleAsyncTaskExecutor())
+//                .taskExecutor(taskExecutor())
                 .build();
     }
 
     @Bean
-    public Step slaveStep() {
+    public Step slaveStep() throws InterruptedException {
         return stepBuilderFactory.get("slaveStep")
                 .<Customer, Customer>chunk(100)
                 .reader(pagingItemReader(null, null))
+                .listener(new CustomItemReadListener())
+//                .processor((ItemProcessor<Customer, Customer>) item -> item.renewCustom())
+                .processor(customerItemProcessor())
                 .writer(customItemWriter())
+//                .listener(new CustomItemWriteListener())
+//                .taskExecutor(taskExecutor())
                 .build();
+    }
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(2);    // 기본적인 풀 갯수
+        taskExecutor.setMaxPoolSize(8);     // 위에 쓰레드가 아직 작업 중일 경우 확장
+        taskExecutor.setThreadNamePrefix("async-thread");   // 네임 prefix
+
+        return taskExecutor;
     }
 
     @Bean
@@ -124,5 +140,20 @@ public class PartitioningConfiguration {
         itemWriter.afterPropertiesSet();
 
         return itemWriter;
+    }
+
+    @Bean
+    public ItemProcessor<Customer, Customer> customerItemProcessor() throws InterruptedException {
+
+        return new ItemProcessor<Customer, Customer>() {
+            @Override
+            public Customer process(Customer item) throws Exception {
+                // 비동기의 타겟이 되는 부분.
+
+                // 데이터 처리한다.
+                return new Customer(item.getId(), "PROCESSED"+item.getFirstName(),
+                        "PROCESSED"+item.getFirstName().toUpperCase(), item.getBirthDate());
+            }
+        };
     }
 }
