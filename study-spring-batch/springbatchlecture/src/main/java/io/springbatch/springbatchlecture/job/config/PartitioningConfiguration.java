@@ -42,6 +42,7 @@ public class PartitioningConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final DataSource dataSource;
 
+    /*
     @Bean
     public Job partitioningBatchJob() throws Exception {
         return jobBuilderFactory.get("batchJob")
@@ -156,4 +157,5 @@ public class PartitioningConfiguration {
             }
         };
     }
+    */
 }
