@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job;
 
 import io.springbatch.springbatchlecture.entity.Student;
@@ -140,3 +141,4 @@ public class Chunk2Configuration {
         return object;
     }
 }
+*/

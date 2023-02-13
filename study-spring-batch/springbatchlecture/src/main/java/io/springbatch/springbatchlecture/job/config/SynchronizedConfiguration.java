@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config;
 
 import io.springbatch.springbatchlecture.entity.customer.Customer;
@@ -90,6 +91,7 @@ public class SynchronizedConfiguration {
         itemWriter.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>());
         itemWriter.afterPropertiesSet();
 
+        System.out.println("write!");
         return itemWriter;
     }
 
@@ -103,3 +105,4 @@ public class SynchronizedConfiguration {
         return taskExecutor;
     }
 }
+*/
