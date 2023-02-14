@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config;
 
 import io.springbatch.springbatchlecture.job.config.tasklet.CustomTasklet;
@@ -78,3 +79,4 @@ public class ParallelStepConfiguration {
     }
 
 }
+*/
