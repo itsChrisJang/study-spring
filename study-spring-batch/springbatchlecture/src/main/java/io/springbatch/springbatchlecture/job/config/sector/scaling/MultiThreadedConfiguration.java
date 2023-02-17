@@ -42,7 +42,7 @@ public class MultiThreadedConfiguration {
         return jobBuilderFactory.get("multiThreadedBatchJob")
                 .incrementer(new RunIdIncrementer())
                 .start(step1())
-//                .start(asyncStep1())ㅎ
+//                .start(asyncStep1())
                 .listener(new StopWatchJobListerner())
                 .build();
     };

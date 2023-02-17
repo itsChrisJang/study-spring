@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config.sector.flowjob;
 
 import lombok.RequiredArgsConstructor;
@@ -24,13 +25,15 @@ public class BatchStatusExitStatusConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
 
     // Transition - 배치상태 유형 (BatchStatus / ExitStatus / FlowExecutionStatus)
-    /*@Bean
+    */
+/*@Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
                 .start(step1())
                 .next(step2())
                 .build();
-    }*/
+    }*//*
+
     @Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
@@ -63,3 +66,4 @@ public class BatchStatusExitStatusConfiguration {
                 .build();
     }
 }
+*/
