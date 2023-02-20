@@ -1,5 +1,5 @@
 /*
-package io.springbatch.springbatchlecture.job.config;
+package io.springbatch.springbatchlecture.job.config.sector.scaling;
 
 import io.springbatch.springbatchlecture.job.config.tasklet.CustomTasklet;
 import io.springbatch.springbatchlecture.job.listener.StopWatchJobListerner;

@@ -1,4 +1,3 @@
-/*
 package io.springbatch.springbatchlecture.job.config.sector.flowjob.transition;
 
 import lombok.RequiredArgsConstructor;
@@ -15,29 +14,52 @@ import org.springframework.context.annotation.Configuration;
 
 @RequiredArgsConstructor
 @Configuration
-public class SimpleFlowConfiguration {
+public class SimpleFlowExampleConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    // TITLE : SimpleFlow - 개념 및 API 소개
+    // TITLE : SimpleFlow 예제
     @Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
                 .incrementer(new RunIdIncrementer())
-                .start(flow())
-                .next(step3())
+                .start(flow1())
+                    .on("COMPLETED")
+                    .to(flow2())
+                .from(flow1())
+                    .on("FAILED")
+                    .to(flow3())
                 .end()
                 .build();
     }
 
     @Bean
-    public Flow flow() {
-
-        FlowBuilder<Flow> flowBuilder = new FlowBuilder<>("flow");
-
+    public Flow flow1() {
+        FlowBuilder<Flow> flowBuilder = new FlowBuilder<>("flow1");
         flowBuilder.start(step1())
                 .next(step2())
+                .end();
+
+        return flowBuilder.build();
+    }
+
+    @Bean
+    public Flow flow2() {
+        FlowBuilder<Flow> flowBuilder = new FlowBuilder<>("flow2");
+        flowBuilder.start(flow3())
+                .next(step5())
+                .next(step6())
+                .end();
+
+        return flowBuilder.build();
+    }
+
+    @Bean
+    public Flow flow3() {
+        FlowBuilder<Flow> flowBuilder = new FlowBuilder<>("flow3");
+        flowBuilder.start(step3())
+                .next(step4())
                 .end();
 
         return flowBuilder.build();
@@ -58,7 +80,8 @@ public class SimpleFlowConfiguration {
         return stepBuilderFactory.get("step2")
                 .tasklet((contribution, chunkContext) -> {
                     System.out.println(">>>> step2 has executed");
-                    return RepeatStatus.FINISHED;
+                    throw new RuntimeException("step2 was failed");
+//                    return RepeatStatus.FINISHED;
                 })
                 .build();
     }
@@ -72,5 +95,34 @@ public class SimpleFlowConfiguration {
                 })
                 .build();
     }
+
+    @Bean
+    public Step step4() {
+        return stepBuilderFactory.get("step4")
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println(">>>> step4 has executed");
+                    return RepeatStatus.FINISHED;
+                })
+                .build();
+    }
+
+    @Bean
+    public Step step5() {
+        return stepBuilderFactory.get("step5")
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println(">>>> step5 has executed");
+                    return RepeatStatus.FINISHED;
+                })
+                .build();
+    }
+
+    @Bean
+    public Step step6() {
+        return stepBuilderFactory.get("step6")
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println(">>>> step6 has executed");
+                    return RepeatStatus.FINISHED;
+                })
+                .build();
+    }
 }
-*/
