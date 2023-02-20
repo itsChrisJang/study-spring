@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config.sector.flowjob.transition;
 
 import lombok.RequiredArgsConstructor;
@@ -126,3 +127,4 @@ public class SimpleFlowExampleConfiguration {
                 .build();
     }
 }
+*/

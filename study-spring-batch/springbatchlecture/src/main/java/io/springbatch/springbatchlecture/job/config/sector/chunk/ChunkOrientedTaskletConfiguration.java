@@ -19,10 +19,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Configuration
-public class ChunkConfiguration {
+public class ChunkOrientedTaskletConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
+    // TITLE : ChunkOrientedTasklet - 개념 및 API 소개
     @Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
@@ -35,21 +36,18 @@ public class ChunkConfiguration {
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
-                .<String, String>chunk(5)
-                .reader(new ListItemReader<>(Arrays.asList("item1", "item2", "item3", "item4", "item5")))
+                .<String, String>chunk(2)
+                .reader(new ListItemReader<>(Arrays.asList("item1", "item2", "item3", "item4", "item5", "item6")))
                 .processor(new ItemProcessor<String, String>() {
                     @Override
                     public String process(String item) throws Exception {
-                        Thread.sleep(300);
-                        System.out.println("item = " + item);
-                        return "my" + item;
+                        return "my_" + item;
                     }
                 })
                 .writer(new ItemWriter<String>() {
                     @Override
                     public void write(List<? extends String> items) throws Exception {
-                        Thread.sleep(300);
-                        System.out.println("items = " + items);
+                        items.forEach(item -> System.out.println(item));
                     }
                 })
                 .build();
