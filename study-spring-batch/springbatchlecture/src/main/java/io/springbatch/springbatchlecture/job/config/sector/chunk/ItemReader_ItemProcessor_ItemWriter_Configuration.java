@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config.sector.chunk;
 
 import lombok.RequiredArgsConstructor;
@@ -71,3 +72,4 @@ public class ItemReader_ItemProcessor_ItemWriter_Configuration {
                 .build();
     }
 }
+*/

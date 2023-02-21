@@ -3,10 +3,7 @@ package io.springbatch.springbatchlecture.job.config.sector.scaling;
 
 import io.springbatch.springbatchlecture.entity.customer.Customer;
 import io.springbatch.springbatchlecture.entity.customer.CustomerRowMapper;
-import io.springbatch.springbatchlecture.job.listener.CustomItemProcessListener;
-import io.springbatch.springbatchlecture.job.listener.CustomItemWriteListener;
-import io.springbatch.springbatchlecture.job.listener.CustomItemReadListener;
-import io.springbatch.springbatchlecture.job.listener.StopWatchJobListerner;
+import io.springbatch.springbatchlecture.job.listener.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -51,6 +48,7 @@ public class MultiThreadedConfiguration {
     public Step step1() throws Exception {
         return stepBuilderFactory.get("step1")
                 .<Customer, Customer>chunk(100)
+//                .listener(new CustomStepListener())
                 .reader(pagingItemReader())   // 동기화 처리 가능
 //                .reader(customerItemReader())   // 동기화 처리되지 않은 리더라 쓰레드가 같은 값에 접근함.
                 .listener(new CustomItemReadListener())
@@ -60,6 +58,7 @@ public class MultiThreadedConfiguration {
                 .listener(new CustomItemWriteListener())
 //                .taskExecutor(new SimpleAsyncTaskExecutor()) // 멀티 쓰레드 설정 : 고정 값
                 .taskExecutor(taskExecutor()) // 멀티 쓰레드 설정 : 여러 정보 세팅 가능
+                .listener(new CustomStepListener())
                 .build();
     }
 
