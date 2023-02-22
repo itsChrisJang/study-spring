@@ -14,10 +14,13 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+    job:
+      enabled: false
 
   sql:
     init:
       mode: always
+
 
 
 ---

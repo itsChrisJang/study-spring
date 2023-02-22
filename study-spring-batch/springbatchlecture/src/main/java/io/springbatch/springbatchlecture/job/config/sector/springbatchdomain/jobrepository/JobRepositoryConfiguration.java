@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config.sector.job;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class JobRepositoryConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final JobExecutionListener jobExecutionListener;
 
+    // TITLE : JobRepository
     @Bean
     public Job job() {
         return jobBuilderFactory.get("batchJob")
@@ -60,3 +62,4 @@ public class JobRepositoryConfiguration {
 
 }
 
+*/
