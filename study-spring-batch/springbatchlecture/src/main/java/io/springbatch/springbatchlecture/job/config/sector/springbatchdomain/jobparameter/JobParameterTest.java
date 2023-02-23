@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config.sector.springbatchdomain.jobparameter;
 
 import org.springframework.batch.core.Job;
@@ -31,3 +32,4 @@ public class JobParameterTest implements ApplicationRunner {
     }
 
 }
+*/
