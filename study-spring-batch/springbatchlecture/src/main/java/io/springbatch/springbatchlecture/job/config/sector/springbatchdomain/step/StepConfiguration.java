@@ -1,4 +1,5 @@
-package io.springbatch.springbatchlecture.job.config.sector.springbatchdomain.jobexecution.jobparameter;
+/*
+package io.springbatch.springbatchlecture.job.config.sector.springbatchdomain.step;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -15,12 +16,12 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class JobExecutionConfiguration {
+public class StepConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    // TITLE : JobExecution
+    // TITLE : Step
     @Bean
     public Job job() {
         return jobBuilderFactory.get("batchJob")
@@ -33,28 +34,19 @@ public class JobExecutionConfiguration {
     @JobScope
     public Step step1() {
         return stepBuilderFactory.get("step1")
-                .tasklet(new Tasklet() {
-                    @Override
-                    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                        System.out.println("step1 was executed");
-                        return RepeatStatus.FINISHED;
-                    }
-                })
+                .tasklet(new CustomTasklet())
                 .build();
     }
 
     @Bean
     public Step step2() {
         return stepBuilderFactory.get("step2")
-                .tasklet(new Tasklet() {
-                    @Override
-                    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                        System.out.println("step2 was executed");
-//                        throw new RuntimeException("step2 has failed");
-                        return RepeatStatus.FINISHED;
-                    }
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println("step2 was executed");
+                    return RepeatStatus.FINISHED;
                 })
                 .build();
     }
 
 }
+*/

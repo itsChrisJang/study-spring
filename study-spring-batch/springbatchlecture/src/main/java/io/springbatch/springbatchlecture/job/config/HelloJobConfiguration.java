@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config;
 
 import lombok.RequiredArgsConstructor;
@@ -18,41 +19,42 @@ public class HelloJobConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-//    @Bean
-//    public Job helloJob() {
-//        return jobBuilderFactory.get("helloJob")
-//                .start(helloStep1())
-//                .next(helloStep2())
-//                .build();
-//    };
-//
-//    @Bean
-//    public Step helloStep1() {
-//        return stepBuilderFactory.get("helloStep1")
-//                .tasklet(new Tasklet() {
-//                    @Override
-//                    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-//
-//                        System.out.println("==========================");
-//                        System.out.println(">> Step1 Hello Spring Batch!!");
-//                        System.out.println("==========================");
-//
-//                        // tasklet은 기본적으로 무한반복 시킨다.
-//                        // RepeatStatus 옵션에 따라 반복 주기를 기재한다.
-//                        return RepeatStatus.FINISHED;
-//                    }
-//                })
-//                .build();
-//    }
-//    @Bean
-//    public Step helloStep2() {
-//        return stepBuilderFactory.get("helloStep2")
-//                .tasklet((contribution, chunkContext) -> {
-//                    System.out.println("==========================");
-//                    System.out.println(">> Step2 Hello Spring Batch!!");
-//                    System.out.println("==========================");
-//
-//                    return RepeatStatus.FINISHED;
-//                }).build();
-//    }
+    @Bean
+    public Job helloJob() {
+        return jobBuilderFactory.get("helloJob")
+                .start(helloStep1())
+                .next(helloStep2())
+                .build();
+    };
+
+    @Bean
+    public Step helloStep1() {
+        return stepBuilderFactory.get("helloStep1")
+                .tasklet(new Tasklet() {
+                    @Override
+                    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+
+                        System.out.println("==========================");
+                        System.out.println(">> Step1 Hello Spring Batch!!");
+                        System.out.println("==========================");
+
+                        // tasklet은 기본적으로 무한반복 시킨다.
+                        // RepeatStatus 옵션에 따라 반복 주기를 기재한다.
+                        return RepeatStatus.FINISHED;
+                    }
+                })
+                .build();
+    }
+    @Bean
+    public Step helloStep2() {
+        return stepBuilderFactory.get("helloStep2")
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println("==========================");
+                    System.out.println(">> Step2 Hello Spring Batch!!");
+                    System.out.println("==========================");
+
+                    return RepeatStatus.FINISHED;
+                }).build();
+    }
 }
+*/

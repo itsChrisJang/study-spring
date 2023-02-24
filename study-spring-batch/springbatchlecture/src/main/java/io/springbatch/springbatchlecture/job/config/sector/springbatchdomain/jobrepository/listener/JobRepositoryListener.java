@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.job.config.sector.springbatchdomain.jobrepository.listener;
 
 import org.springframework.batch.core.*;
@@ -36,3 +37,4 @@ public class JobRepositoryListener implements JobExecutionListener {
         }
     }
 }
+*/
