@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.sector.springbatchdomain.joblauncher;
 
 import lombok.RequiredArgsConstructor;
@@ -59,3 +60,4 @@ public class JobLauncherConfiguration {
     }
 
 }
+*/
