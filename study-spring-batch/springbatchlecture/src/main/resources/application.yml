@@ -14,8 +14,12 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+#      table-prefix: SYSTEM_
     job:
-      enabled: false
+      names: ${job.name:NONE}
+      enabled: true
+
+
   sql:
     init:
       mode: always

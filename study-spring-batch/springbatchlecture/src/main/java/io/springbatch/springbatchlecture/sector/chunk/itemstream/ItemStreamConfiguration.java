@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.sector.chunk.itemstream;
 
 import lombok.RequiredArgsConstructor;
@@ -64,3 +65,4 @@ public class ItemStreamConfiguration {
     }
 
 }
+*/
