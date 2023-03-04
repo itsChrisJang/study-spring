@@ -16,10 +16,14 @@ spring:
       initialize-schema: always
 #      table-prefix: SYSTEM_
     job:
+<<<<<<< HEAD
       names: ${job.name:NONE}
       enabled: true
 
 
+=======
+      enabled: true
+>>>>>>> origin/main
   sql:
     init:
       mode: always
