@@ -1,12 +1,10 @@
-/*
-package io.springbatch.springbatchlecture.sector.job.validator;
+package io.springbatch.springbatchlecture.sector.job.preventrestart;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
-import org.springframework.batch.core.job.DefaultJobParametersValidator;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -15,22 +13,20 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class ValidatorConfiguration {
+public class PreventRestartConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    // TITLE : Validator
+    // TITLE : preventRestart()
     @Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
                 .start(step1())
                 .next(step2())
                 .next(step3())
-                // Custom Validator
-//                .validator(new CustomJobParametersValidator())
-                // (Required key, Option key)
-                .validator(new DefaultJobParametersValidator(new String[]{"name", "date"}, new String[]{"count"}))
+                // preventRestart() => restartable = false
+                .preventRestart()
                 .build();
     }
 
@@ -77,4 +73,3 @@ public class ValidatorConfiguration {
     }
 
 }
-*/
