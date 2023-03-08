@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.sector.job.batchresetsetting;
 
 import lombok.RequiredArgsConstructor;
@@ -59,3 +60,4 @@ public class BatchResetSettingConfiguration {
     }
 
 }
+*/
