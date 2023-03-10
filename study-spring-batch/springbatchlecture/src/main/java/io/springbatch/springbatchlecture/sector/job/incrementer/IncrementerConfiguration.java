@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.sector.job.incrementer;
 
 import lombok.RequiredArgsConstructor;
@@ -57,3 +58,4 @@ public class IncrementerConfiguration {
     }
 
 }
+*/
