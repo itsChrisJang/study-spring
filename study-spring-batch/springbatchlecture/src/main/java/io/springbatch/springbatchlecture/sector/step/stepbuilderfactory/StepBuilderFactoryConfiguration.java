@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.sector.step.stepbuilderfactory;
 
 import lombok.RequiredArgsConstructor;
@@ -113,3 +114,4 @@ public class StepBuilderFactoryConfiguration {
     }
 
 }
+*/
