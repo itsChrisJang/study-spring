@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.sector.step.taskletstep;
 
 import lombok.RequiredArgsConstructor;
@@ -26,12 +27,14 @@ public class TaskletStepConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    /*
+    */
+/*
      TITLE : TaskletStep
         1. 스프링 배치에서 제공하는 Step의 구현체로 Tasklet 을 실행시키는 도메인 객체
         2. RepeatTemplate 를 사용해서 Tasklet 의 구문을 트랜잭션 경계 내에서 반복해서 실행함.
         3. Task 기반과 Chunk 기반으로 나누어서 Tasklet 을 실행함.
-     */
+     *//*
+
     @Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
@@ -75,3 +78,4 @@ public class TaskletStepConfiguration {
     }
 
 }
+*/
