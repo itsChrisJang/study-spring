@@ -1,3 +1,4 @@
+/*
 package io.springbatch.springbatchlecture.sector.step.taskletstep;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,8 @@ public class TaskletConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
-    /*
+    */
+/*
      TITLE : tasklet()
         - Step 내에서 구성되고 실행되는 도메인 객체로서 주로 단일 태스크를 수행하기 위한 것
         - TaskletStep에 의해 반복적으로 수행되며 반환값에 따라 계속 수행 혹은 종료한다.
@@ -34,7 +36,8 @@ public class TaskletConfiguration {
             - RepeatStatus.FINISHED - Tasklet 종료, RepateStatus 을 null 로 반환하면 RepeatStatus.FINISHED로 해석됨
             - RepeatStatus.CONTINUABLE - Tasklet 반복
             - RepeatStatus.FINISHED가 리턴되거나 실패 예외거 던져지기 전까지 TaskletStep에 의해 While 문 안에서 반복적으로 호출됨(무한 루프 주의)
-     */
+     *//*
+
     @Bean
     public Job batchJob() {
         return jobBuilderFactory.get("batchJob")
@@ -65,3 +68,4 @@ public class TaskletConfiguration {
     }
 
 }
+*/
