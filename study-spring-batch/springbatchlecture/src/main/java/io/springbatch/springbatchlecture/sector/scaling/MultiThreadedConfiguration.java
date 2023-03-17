@@ -1,5 +1,4 @@
-package io.springbatch.springbatchlecture.sector.scaling;/*
-package io.springbatch.springbatchlecture.job.config.sector.scaling;
+package io.springbatch.springbatchlecture.sector.scaling;
 
 import io.springbatch.springbatchlecture.entity.customer.Customer;
 import io.springbatch.springbatchlecture.entity.customer.CustomerRowMapper;
@@ -165,4 +164,3 @@ public class MultiThreadedConfiguration {
     }
 
 }
-*/
