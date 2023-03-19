@@ -1,4 +1,4 @@
-package com.itvillage.rxjavachris;
+package com.itvillage.rxjavachris.example;
 
 import io.reactivex.Observable;
 
