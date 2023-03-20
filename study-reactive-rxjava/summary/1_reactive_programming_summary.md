@@ -27,7 +27,7 @@
     - **문장으로 적혀 있는 리액티브 연산자(Operators)의 기능을 이해하기 어려움**
     - **리액티브 연산자의 기능이 시각화 되어 있어서 이해하기 쉬움**
     - **리액티브 프로그래밍의 핵심인 연산자(Operators)를 사용하기 위한 핵심 도구**
-![marbel_diagram](../img/marbel_diagram.png)
-![marbel_diagram_example_1](../img/marbel_diagram_example_1.png)
-![marbel_diagram_example_2](../img/marbel_diagram_example_2.png)
+![marbel_diagram](../img/marbel_diagram.png) 
+![marbel_diagram_example_1](../img/marbel_diagram_example_1.png) 
+![marbel_diagram_example_2](../img/marbel_diagram_example_2.png) 
  

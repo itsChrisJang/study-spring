@@ -1,7 +1,7 @@
 # Kevin의 알기 쉬운 RxJava 1부
 ## 3.리액티브 프로그래밍 구성 요소와 친해지기
 
-### Reactive Streams란?
+### Reactive Streams란??
 - 리액티브 프로그래밍 라이브러리의 표준 사양이다.
 - 리액티브 프로그래밍에 대한 인터페이스만 제공한다.
 - RxJava는 이 Reactive Streams의 인터페이스들을 구현한 구현체임.
@@ -14,7 +14,7 @@
 #### Publisher와 Subscriber간의 프로세스 흐름
 ![publisher_subscriber_process](../img/publisher_subscriber_process.png)
 
-#### Cold Publisher & Hot Publisher
+#### Cold Publisher & Hot Publisher 
 - Cold Publisher(차가운 생산자) : 
     - 생산자는 소비자가 구독할 때마다 데이터를 처음부터 새로 통지한다.
     - 데이터를 통지하는 새로운 타임 라인이 생성된다.
