@@ -36,10 +36,32 @@
 
 #### 배압(Back Pressure)이란?
 - Flowable 에서 데이터를 통지하는 속도가 Subscriber 에서 통지된 데이터를 전달받아 처리하는 속도 보다 빠를 때 밸런스를 맞추기 위해 데이터 통지량을 제어하는 기능을 말한다.
-![publisher_subscriber_process](../img/back_pressure.png)
-> - doOnNext() : 
->   - interval 함수에서 데이터를 통제할 때 호출되는 callBack 함수
->   - interval 함수에서 어떻게 출력이 되는지 doOnNext() 에서 확인할 수 있음.
+  ![publisher_subscriber_process](../img/back_pressure.png)
+
+> - doOnNext() :
+    >   - interval 함수에서 데이터를 통제할 때 호출되는 callBack 함수
+    >   - interval 함수에서 어떻게 출력이 되는지 doOnNext() 에서 확인할 수 있음.
 > - observeOn()
->   - 데이터를 처리하는 Thread 를 분리할 수 있다.
->   - Schedulers.~
+    >   - 데이터를 처리하는 Thread 를 분리할 수 있다.
+    >   - Schedulers.~
+
+#### 배압 전략(Backpressure Strategy)
+- RxJava에서는 Backpressure Strategy 를 통해 Flowable이 통지 대기중인 데이터를 어떻게 다룰지에 대한 배압 전략을 제공한다.
+- **MISSING 전략**
+  - 배압을 적용하지 않는다.
+  - 나중에 onBackpressureXXX() 로 배압 적용을 할 수 있다.
+- **ERROR 전략**
+  - 통지된 데이타가 버퍼의 크기를 초과하면 MissingBackpressureException 에러를 통지한다.
+  - 즉, 소비자가 생산자의 통지 속도를 따라 잡지 못할 때 발생한다.
+- **BUFFER 전략 : DROP_LATEST**
+  - 버퍼가 가득 찬 시점에 버퍼 내에서 가장 최근에 버퍼로 들어온 데이터를 DROP 한다.
+  - DROP 된 빈 자리에 버퍼 밖에서 대기하던 데이터를 채운다.
+![drop_latest_01](../img/drop_latest_01.png)
+![drop_latest_02](../img/drop_latest_02.png)
+![drop_latest_03](../img/drop_latest_03.png)
+![drop_latest_04](../img/drop_latest_04.png)
+- **BUFFER 전략 : DROP_OLDEST**
+  - 버퍼가 가득 찬 시점에 버퍼내에서 가장 오래전에(먼저) 버퍼로 들어온 데이터를 DROP 한다. 
+  - DROP 된 빈 자리에는 버퍼 밖에서 대기하던 데이터를 채운다.
+![drop_oldest_01](../img/drop_oldest_01.png)
+![drop_oldest_02](../img/drop_oldest_02.png)
