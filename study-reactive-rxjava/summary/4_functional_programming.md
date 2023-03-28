@@ -31,3 +31,19 @@
 | BiConsumer<T, U>    | (T, U) -> void    |
 | BiFunction<T, U, R> | (T, U) -> R       |
  
+### 메서드 레퍼런스란?
+- 우리말로 번역하면 메서드 참조라는 의미이다.
+- 람다 표현식 body(몸체) 부분에 기술되는 메서드를 이용해서 표현되며, 메서드의 이름만 전달한다.
+- 구분자(::)를 붙이는 방식으로 메서드 레퍼런스를 표현한다.
+- 메서드 레퍼런스를 사용하면 람다 표현식이 더욱 간결해진다.
+![method_reference](../img/method_reference.png)
+
+#### 메서드 레퍼런스의 유형
+- ClassName::static method
+  - 예) (String s) -> Integer.parseInt(s) => Integer::parseInt 
+- ClassName::instance method
+  - 예) (String s) -> s.toLowerCase() => String::toLowerCase
+- object::instance method
+  - 예) (int count) -> obj.getTotal(count) => obj::getTotal
+- ClassName::new
+  - 예) () -> new Car() => Car::new
