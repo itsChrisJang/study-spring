@@ -26,3 +26,17 @@
   - 호출한 스레드와는 별도의 스레드에서 실행된다.
   - 특정 시간에 대기한 후에 어떤 처리를 하고자 할 때 활용할 수 있다.
     ![timer](../img/timer.png)
+- **defer**
+  - 구독이 발생할 때마다 즉, subscribe() 가 호출될 때마다 새로운 Observable을 생성한다.
+  - 선언한 시점의 데이터를 통지하는 것이 아니라 호출 시점의 데이터를 통지한다.
+  - 데이터 생성을 미루는 효과가 있기 때문에 최신 데이터를 얻고자할 때 활용할 수 있다.
+  ![defer](../img/defer.png)
+- **fromIterable**
+  - Iterable 인터페이스를 구현한 클래스(ArrayList 등)를 파라미터로 받는다.
+  - Iterable 에 담긴 데이터를 순서대로 통지한다.
+  ![fromIterable](../img/fromIterable.png)
+- **fromFuture**
+  - Future 인터페이스는 자바 5에서 비동기 처리를 위해 추가된 동시성 API 이다.
+  - 시간이 오래 걸리는 작업은 Future 를 반환하는 ExcutorService 에게 맡기고 비동기로 다른 작업을 수행할 수 있다.
+  - Java 8에서는 CompletableFuture 클래스를 통해 구현이 간결해졌다.
+  ![fromFuture](../img/fromFuture.png)
