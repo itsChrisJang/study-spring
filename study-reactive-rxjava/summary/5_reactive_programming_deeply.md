@@ -40,3 +40,31 @@
   - 시간이 오래 걸리는 작업은 Future 를 반환하는 ExcutorService 에게 맡기고 비동기로 다른 작업을 수행할 수 있다.
   - Java 8에서는 CompletableFuture 클래스를 통해 구현이 간결해졌다.
   ![fromFuture](../img/fromFuture.png)
+
+### 데이터 필터링 연산자
+#### 데이터 필터링 연산자
+- **filter**
+  - 전달 받은 데이터가 조건에 맞는지 확인한 후, 결과가 true 인 데이터만 통지한다.
+  - filter 라는 단어의 사전적 의미가 무언가를 걸러낸다는 의미이다.
+  - 파라미터로 받는 Predicate 함수형 인터페이스에서 조건을 확인한다.
+![filter](../img/filter.png)
+- **distinct**
+  - 이미 통지된 동일한 데이터가 있다면 이후의 동일한 데이터는 통지 하지 않는다.
+  - distinct 의 사전적 의미는 '명확하게 구별되는' 이라는 뜻을 포함하고 있다.
+![distinct](../img/distinct.png)
+- **take**
+  - 파라미터로 지정한 개수나 기간이 될 때까지 데이터를 통지한다.
+  - 지정한 범위가 통지 데이터보다 클 경우 데이터를 모두 통지하고 완료한다.
+![take](../img/take.png)
+- **takeUntil 첫번째 유형**
+  - 파라미터로 지정한 조건이 true 가 될 때까지 데이터를 계속 통지한다. 
+![take_until_01](../img/take_until_01.png)
+- **takeUntil 첫번째 유형**
+  - 파라미터로 지정한 Observable 이 최초 데이터를 통지할 때까지 데이터를 계속 통지한다.
+![take_until_02](../img/take_until_02.png)
+- **skip 첫번째 유형**
+  - 파라미터로 지정한 숫자만큼 데이터를 건너뛴 후 나머지 데이터를 통지한다.
+![skip_01](../img/skip_01.png)
+- **skip 두번째 유형**
+  - 파라미터로 지정한 시간동안에는 데이터를 통지를 건너뛴 후 지정한 시간 이 후, 나머지 데이터를 통지한다.
+![skip_02](../img/skip_02.png)
