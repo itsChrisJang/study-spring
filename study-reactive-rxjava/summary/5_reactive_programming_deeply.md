@@ -83,5 +83,17 @@
     ![flatMap_01](../img/flatMap_01.png)
 - **flatMap 두번째 유형**
   - 원본 데이터와 변환된 데이터를 조합해서 새로운 데이터를 통지한다.
+  - **순서를 보장하지 않는다.**
   - 즉, Observable 에 **원본 데이터 + 변환된 데이터 = 최종 데이터**를 실어서 반환한다.
     ![flatMap_02](../img/flatMap_02.png)
+- **concatMap**
+  - flatMap 과 마찬가지로 받은 데이터를 변환하여 새로운 Observable 로 반환한다.
+  - 반환된 새로운 Observable 을 **하나씩 순서대로 실행하는 것**이 FlatMap 과 다르다.
+  - 즉, **데이터의 처리 순서는 보장**하지만 처리중인 Observable 의 처리가 끝나야 다음 Observable 이 실행되므로 처리 성능에는 영향을 줄 수 있다.
+    - flatMap 에 비해 속도가 느리다.
+    ![concatMap](../img/concatMap.png)
+- **switchMap**
+  - concatMap 과 마찬가지로 받은 데이터를 변환하여 새로운 Observable 로 반환한다.
+  - concatMap 과 다른점은 **switchMap 은 순서를 보장하지만 새로운 데이터가 통지되면 현재 처리중이던 작업을 바로 중단**한다.
+    ![switchMap](../img/switchMap.png)
+
