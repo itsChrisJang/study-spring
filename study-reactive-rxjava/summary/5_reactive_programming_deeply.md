@@ -97,3 +97,20 @@
   - concatMap 과 다른점은 **switchMap 은 순서를 보장하지만 새로운 데이터가 통지되면 현재 처리중이던 작업을 바로 중단**한다.
     ![switchMap](../img/switchMap.png)
 
+#### 데이터 변환 연산자
+- **groupBy**
+  - 하나의 Observable 을 여러개의 새로운 GroupedByObservable 로 만든다.
+  - 원본 Observable 의 데이터를 그룹별로 묶는다기보다는 각각의 데이터들이 그룹에 해당하는 Key 를 가지게 된다.
+  - GroupedByObservable 은 getKey()를 통해 구분된 그룹을 알 수 있게 해준다.
+    ![groupBy](../img/groupBy.png)
+- **toList**
+  - 통지되는 데이터를 모두 List 에 담아 통지한다.
+  - 원본 Observable 에서 완료 통지를 받는 즉시 리스트를 통지한다.
+  - 통지되는 데이터는 원본 데이터를 담은 리스트 하나이므로 Single 로 반환된다.
+    ![toList](../img/toList.png)
+- **toMap**
+  - 통지되는 데이터를 모두 Map 에 담아 통지한다.
+  - 원본 Observable 에서 완료 통지를 받는 즉시 Map 을 통지한다.
+  - 이미 사용중인 key(키)를 또 생성하면 **기존에 있던 key(키)와 value(값)를 덮어쓴다.**
+  - 통지되는 데이터는 원본 데이터를 담은 Map 하나이므로 Single 로 반환된다. 
+    ![toMap](../img/toMap.png)
