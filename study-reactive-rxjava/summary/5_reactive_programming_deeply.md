@@ -114,3 +114,16 @@
   - 이미 사용중인 key(키)를 또 생성하면 **기존에 있던 key(키)와 value(값)를 덮어쓴다.**
   - 통지되는 데이터는 원본 데이터를 담은 Map 하나이므로 Single 로 반환된다. 
     ![toMap](../img/toMap.png)
+
+### 결합 연산자
+#### 데이터 결합 연산자
+- **merge**
+  - 다수의 Observable 에서 통지된 데이터를 받아서 다시 하나의 Observable 로 통지한다.
+  - 통지 시점이 빠른 Observable 의 데이터부터 순차적으로 통지되고 통지 시점이 같을 경우에는 merge() 함수의 파라미터로 먼저 지정된 Observable 의 데이터부터 통지된다. 
+  ![merge](../img/merge.png)
+  ![merge_example](../img/merge_example.png)
+- **concat**
+  - 다수의 Observable 에서 통지된 데이터를 받아서 다시 하나의 Observable 로 통지한다.
+  - 하나의 Observable 에서 통지가 끝나면 다음 Observable 에서 연이어서 통지가 된다.
+  - 각 Observable 의 통지 시점과는 상관없이 concat() 함수의 파라미터로 먼저 입력된 Observable 의 데이터부터 모두 통지된 후, 다음 Observable 의 데이터가 통지된다.
+  ![concat](../img/concat.png)
