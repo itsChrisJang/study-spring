@@ -131,8 +131,22 @@
   - 다수의 Observable 에서 통지된 데이터를 받아서 다시 하나의 Observable 로 통지한다.
   - 각 Observable 에서 통지된 데이터가 모두 모이면 각 Observable 에서 **동일한 index 의 데이터로 새로운 데이터를 생성**한 후 통지한다.
   - 통지하는 데이터 개수가 가장 적은 Observable 의 통지 시점에 완료 통지 시점을 맞춘다.
-    ![concat](../img/zip.png)
+    ![zip](../img/zip.png)
 - **combineLatest**
   - 다수의 Observable 에서 통지된 데이터를 받아서 다시 하나의 Observable 로 통지한다.
   - 각 Observable 에서 데이터를 통지할 때마다 모든 Observable 에서 마지막으로 통지한 각 데이터를 함수형 인터페이스에 전달하고, 새로운 데이터를 생성해 통지한다.
-    ![concat](../img/combineLatest.png)
+    ![combineLatest](../img/combineLatest.png)
+
+### 에러 처리 연산자
+- **onErrorReturn**
+  - 에러가 발생했을 때 에러를 의미하는 데이터로 대체할 수 있다.
+  - onErrorReturn()을 호출하면 onError 이벤트는 발생하지 않는다.   
+    ![onErrorReturn](../img/onErrorReturn.png)
+- **onErrorResumeNext**
+  - 에러가 발생했을 때 에러를 의미하는 Observable 로 대체할 수 있다.
+  - Observable 로 대체할 수 있으므로 데이터 교체와 더불어 에러 처리를 위한 추가 작업을 할 수 있다.
+    ![onErrorResumeNext](../img/onErrorResumeNext.png)
+- **retry**
+  - 데이터 통지 중 에러가 발생했을 때, 데이터 통지를 재시도 한다.
+  - 즉, onError 이벤트가 발생하면 subscribe()를 다시 호출하여 재구독한다.
+    ![retry](../img/retry.png)
