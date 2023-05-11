@@ -159,3 +159,20 @@
 - **delay 두번째 유형**
   - 파라미터로 생성되는 Observable 이 데이터를 통지할때까지 각각의 원본 데이터의 통지를 지연시킨다.
     ![delay2](../img/delay2.png)
+- **delaySubscription**
+  - 생산자가 데이터의 생성 및 통지 자체를 설정한 시간만큼 지연시킨다.
+  - 즉, 소비자가 구독을 해도 구독 시점 자체가 지연된다.
+    ![delaySubscription](../img/delaySubscription.png)
+- **timeout**
+  - 각각의 데이터 통지 시, 지정된 시간안에 통지가 되지 않으면 에러를 통지한다.
+  - 에러 통지 시 전달되는 에러 객체는 TimeoutException 이다.
+    ![timeout](../img/timeout.png)
+- **timeInterval**
+  - 각각의 데이터가 통지되는데 **걸린 시간을 통지**한다.
+  - 통지된 데이터와 데이터가 통지되는데 걸린 시간을 소비자쪽에서 모두 처리할 수 있다.
+    ![timeInterval](../img/timeInterval.png)
+- **materialize/dematerialize**
+  - materialize : 통지된 데이터와 통지된 데이터의 통지 타입 자체를 Notification 객체에 담고 이 Notification 객체를 통지한다. 즉, 통지 데이터의 메타 데이터를 포함해서 통지한다고 볼 수 있다.
+  - dematerialize : 통지된 Notification 객체를 원래의 통지 데이터로 변환해서 통지한다. 
+    ![materialize](../img/materialize.png)
+    ![dematerialize](../img/dematerialize.png)
