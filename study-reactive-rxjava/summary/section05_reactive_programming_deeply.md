@@ -176,3 +176,23 @@
   - dematerialize : 통지된 Notification 객체를 원래의 통지 데이터로 변환해서 통지한다. 
     ![materialize](../img/materialize.png)
     ![dematerialize](../img/dematerialize.png)
+
+### 조건과 boolean 연산자
+- **all**
+  - 통지되는 모든 데이터가 설정한 조건에 맞는지를 판단한다.
+  - 결과값을 한번만 통지하면 되기 때문에 true/false 값을 Single 로 반환한다.
+  - 통지된 데이터가 조건에 맞지 않는다면 이후 데이터는 구독 해지되어 통지되지 않는다.
+    ![all](../img/all.png) 
+- **amb**
+  - 여러개의 Observable 중에서 최초 통지 시점이 가장 빠른 Observable 의 데이터만 통지되고, 나머지는 Observable 은 무시된다.
+  - 즉, 가장 먼저 통지를 시작한 Observable 의 데이터만 통지된다.
+    ![amb](../img/amb.png) 
+- **contains**
+  - 파라미타의 데이터가 Observable 에 포함되어 있는지를 판단한다. 
+  - 결과값을 한번만 통지하면 되기 때문에 true/false 값을 Single 로 반환한다.
+  - 결과 통지 시점은 Observable 에 포함된 데이터를 통지하거나 완료를 통지할때이다.
+    ![contains](../img/contains.png) 
+- **defaultIfEmpty**
+  - 통지할 데이터가 없을 경우 파라미터로 입력된 값을 통지한다. 
+  - 즉, 연산자 이름 의미 그대로 Observable 에 통지할 데이터가 없이 비어 있는 상태일때 디폴트 값을 통지한다.
+    ![defaultIfEmpty](../img/defaultIfEmpty.png) 
