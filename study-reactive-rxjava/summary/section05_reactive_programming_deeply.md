@@ -196,3 +196,15 @@
   - 통지할 데이터가 없을 경우 파라미터로 입력된 값을 통지한다. 
   - 즉, 연산자 이름 의미 그대로 Observable 에 통지할 데이터가 없이 비어 있는 상태일때 디폴트 값을 통지한다.
     ![defaultIfEmpty](../img/defaultIfEmpty.png) 
+
+### 데이터 집계 연산자
+- **count**
+  - Observable 이 통지한 데이터의 총 개수를 통지한다.
+  - 총 개수만 통지하면 되므로 결과값은 Single 로 반환한다.
+  - 데이터의 총 개수를 통지하는 시점은 완료 통지를 받은 시점이다.
+    ![count](../img/count.png)
+- **reduce**
+  - Observable 이 통지한 데이터를 이용해서 어떤 결과를 일정한 방식으로 합성한 후, 최종 결과를 반환한다.
+  - Observable 이 통지한 데이터가 숫자일 경우 파라미터로 지정한 함수형 인터페이스에 정의된 계산 방식으로 값을 집계할 수 있다.
+    ![reduce](../img/reduce.png)
+    ![reduce](../img/reduce2.png)
