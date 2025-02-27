@@ -10,17 +10,17 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 import tobyspring.config.MyAutoConfiguration;
 
 @MyAutoConfiguration
-@Conditional(TomcatWebServerConfig.TomcatCondition.class)
-public class TomcatWebServerConfig {
-    @Bean("tomcatWebServerConfig")
+@Conditional(JettyWebServerConfig.JettyCondition.class)
+public class JettyWebServerConfig {
+    @Bean("jettyWebServerConfig")
     public ServletWebServerFactory servletWebServerFactory() {
         return new TomcatServletWebServerFactory();
     }
 
-    static class TomcatCondition implements Condition {
+    static class JettyCondition implements Condition {
         @Override
         public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-            return false;
+            return true;
         }
     }
 }
