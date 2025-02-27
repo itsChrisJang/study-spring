@@ -1,4 +1,4 @@
-# Chris's Spring Study log
+# Chris's Spring Study Log
 > Easier said than done...
 --- 
 ### Commit Role
